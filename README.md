@@ -53,10 +53,13 @@ python3 src/run.py train.pl_trainer.gpus=1
 
 ### Omniglot (5-way 5-shot)
 
+Few-shot learning using this dataset is easy task to overfit or learn for 
+MAML algorithm.
+
 <table class="tg">
 <thead>
   <tr>
-    <th  colspan="3"></th>
+    <th colspan="3"></th>
     <th colspan="2">Metatrain</th>
     <th colspan="2">Metavalidation</th>
   </tr>
@@ -75,19 +78,19 @@ python3 src/run.py train.pl_trainer.gpus=1
     <td >MAML</td>
     <td >OmniConv</td>
     <td >1</td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
+    <td >0.992</td>
+    <td >0.992</td>
+    <td >0.98</td>
+    <td >0.98</td>
   </tr>
   <tr>
     <td >MAML</td>
     <td >OmniConv</td>
     <td >5</td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
+    <td >1.0</td>
+    <td >1.0</td>
+    <td >1.0</td>
+    <td >1.0</td>
   </tr>
 </tbody>
 </table>
@@ -156,6 +159,13 @@ Run the experiment as follows:
 ```bash
 python3 src/run.py data=miniimagenet
 ```
+
+
+## Implementing a different meta learning algorithm
+
+If you plant to implement a new variant of MAML algorithm (for example 
+MAML++) you can start by extending [default lightning module](https://github.com/rcmalli/lightning-maml/blob/44f271380bb6efc925a9070abe2ec4d0f7d88ef3/src/pl/model.py#L77) and its [step](https://github.com/rcmalli/lightning-maml/blob/44f271380bb6efc925a9070abe2ec4d0f7d88ef3/src/pl/model.py#L100-L150) 
+function.
 
 ## Notes
 
