@@ -8,10 +8,11 @@
     <a href="https://black.readthedocs.io/en/stable/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
-This repository is the reimplementation of [MAML](https://arxiv.org/abs/1703.03400) (Model-Agnostic 
-Meta-Learning) algorithm. Differentiable
-optimizers are handled by [Higher](https://github.com/facebookresearch/higher) library and [NN-template](https://github.com/lucmos/nn-template) is used for 
-structuring
+This repository is the reimplementation
+of [MAML](https://arxiv.org/abs/1703.03400) (Model-Agnostic Meta-Learning)
+algorithm. Differentiable optimizers are handled
+by [Higher](https://github.com/facebookresearch/higher) library
+and [NN-template](https://github.com/lucmos/nn-template) is used for structuring
 the project. The default settings are used for training on Omniglot (5-way
 5-shot) problem. It can be easily extended for other few-shot datasets thanks to
 [Torchmeta](https://github.com/tristandeleu/pytorch-meta) library.
@@ -21,14 +22,15 @@ the project. The default settings are used for training on Omniglot (5-way
 **On Local Machine**
 
 1. Download and install dependencies
+
 ```bash
 git clone https://github.com/rcmalli/lightning-maml.git
 cd ./lightning-maml/
 pip install -r requirements.txt
 ```
 
-2. Create `.env` file containing the info given below using your own [Wandb.
-   ai](https://wandb.ai) 
+2. Create `.env` file containing the info given below using your
+   own [Wandb. ai](https://wandb.ai)
    account to track experiments. You can use `.env.template` file.
 
 ```bash
@@ -36,15 +38,16 @@ export DATASET_PATH="/your/project/root/data/"
 export WANDB_ENTITY="USERNAME"
 export WANDB_API_KEY="KEY"
 ```
+
 3. Run the experiment
+
 ```bash
 python3 src/run.py train.pl_trainer.gpus=1
 ```
 
 **On Google Colab**
- 
-[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcmalli/lightning-maml/blob/main/notebooks/lightning_maml_pub.ipynb)
 
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcmalli/lightning-maml/blob/main/notebooks/lightning_maml_pub.ipynb)
 
 ## Results
 
@@ -53,44 +56,88 @@ python3 src/run.py train.pl_trainer.gpus=1
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0pky" colspan="2"></th>
-    <th class="tg-7btt" colspan="2">Metatrain</th>
-    <th class="tg-7btt" colspan="2">Metavalidation</th>
+    <th  colspan="3"></th>
+    <th colspan="2">Metatrain</th>
+    <th colspan="2">Metavalidation</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-7btt">Algorithm</td>
-    <td class="tg-7btt">inner_steps</td>
-    <td class="tg-6ic8">inner accuracy</td>
-    <td class="tg-6ic8"><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
-    <td class="tg-4erg"><span style="font-style:normal;text-decoration:none">inner accuracy</span></td>
-    <td class="tg-fymr"><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+    <td >Algorithm</td>
+    <td >Model</td>
+    <td >inner_steps</td>
+    <td >inner accuracy</td>
+    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+    <td ><span style="font-style:normal;text-decoration:none">inner accuracy</span></td>
+    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
   </tr>
   <tr>
-    <td class="tg-c3ow">MAML</td>
-    <td class="tg-c3ow">1</td>
-    <td class="tg-dvpl"></td>
-    <td class="tg-dvpl"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
+    <td >MAML</td>
+    <td >OmniConv</td>
+    <td >1</td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
   </tr>
   <tr>
-    <td class="tg-c3ow">MAML</td>
-    <td class="tg-c3ow">5</td>
-    <td class="tg-dvpl"></td>
-    <td class="tg-dvpl"></td>
-    <td class="tg-0pky"></td>
-    <td class="tg-0pky"></td>
+    <td >MAML</td>
+    <td >OmniConv</td>
+    <td >5</td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+  </tr>
+</tbody>
+</table>
+
+### MiniImageNet (5-way 5-shot)
+
+<table class="tg">
+<thead>
+  <tr>
+    <th  colspan="3"></th>
+    <th colspan="2">Metatrain</th>
+    <th colspan="2">Metavalidation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td >Algorithm</td>
+    <td >Model</td>
+    <td >inner_steps</td>
+    <td >inner accuracy</td>
+    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+    <td ><span style="font-style:normal;text-decoration:none">inner accuracy</span></td>
+    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+  </tr>
+  <tr>
+    <td >MAML</td>
+    <td >MiniConv</td>
+    <td >1</td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+  </tr>
+  <tr>
+    <td >MAML</td>
+    <td >MiniConv</td>
+    <td >5</td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
+    <td ></td>
   </tr>
 </tbody>
 </table>
 
 ## Customization
 
-Inside 'conf' folder, you can change all the settings depending on your 
-problem or dataset. The default parameters are set for Omniglot dataset. 
-Here are some examples for customization:
+Inside 'conf' folder, you can change all the settings depending on your problem
+or dataset. The default parameters are set for Omniglot dataset. Here are some
+examples for customization:
 
 ### Debug on local machine without GPU
 
@@ -113,8 +160,8 @@ python3 src/run.py train.pl_trainer.gpus=1 data.datamodule.num_inner_steps=5,10,
 
 ### Using different dataset from Torchmeta
 
-If you want to try a different dataset (ex. MiniImageNet), you can copy 
-default.yaml file inside `conf/data` to `miniimagenet.yaml` and edit these 
+If you want to try a different dataset (ex. MiniImageNet), you can copy
+default.yaml file inside `conf/data` to `miniimagenet.yaml` and edit these
 lines :
 
 ```yaml
@@ -142,7 +189,9 @@ datamodule:
 
 # you may need to update data augmentation and preprocessing steps also!!!
 ```
+
 Run the experiment as follows:
+
 ```bash
 python3 src/run.py data=miniimagenet
 ```
@@ -175,7 +224,6 @@ pytorch-lightning as high-level library
    self.manual_backward(outer_loss, outer_optimizer)
    outer_optimizer.step()
    ```
-
 
 ## References
 
