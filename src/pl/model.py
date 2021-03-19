@@ -76,9 +76,9 @@ class BaseModel(pl.LightningModule):
 
 class MAMLModel(BaseModel):
 
-    def __init__(self, torch_module, cfg: DictConfig, *args, **kwargs) -> None:
+    def __init__(self, cfg: DictConfig, *args, **kwargs) -> None:
         super().__init__(cfg=cfg, *args, **kwargs)
-        self.cnn = hydra.utils.instantiate(torch_module,
+        self.cnn = hydra.utils.instantiate(cfg.model.torch_module,
                                            num_classes=cfg.data.datamodule.nway)
         self.cnn = self.cnn.to(device=self.device)
         self.inner_optimizer = hydra.utils.instantiate(
