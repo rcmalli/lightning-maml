@@ -43,7 +43,7 @@ python3 src/run.py train.pl_trainer.gpus=1
 
 **On Google Colab**
  
-[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcmalli/lightning-maml/notebooks/lightning_maml_pub.ipynb)
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/rcmalli/lightning-maml/blob/main/notebooks/lightning_maml_pub.ipynb)
 
 
 ## Results
