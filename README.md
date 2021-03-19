@@ -9,13 +9,13 @@
     <a href="https://black.readthedocs.io/en/stable/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
-This repository is the reimplementation of ![MAML](https://arxiv.org/abs/1703.03400) (Model-Agnostic 
+This repository is the reimplementation of [MAML](https://arxiv.org/abs/1703.03400) (Model-Agnostic 
 Meta-Learning) algorithm. Differentiable
-optimizers are handled by ![Higher](https://github.com/facebookresearch/higher) library and ![NN-template](https://github.com/lucmos/nn-template) is used for 
+optimizers are handled by [Higher](https://github.com/facebookresearch/higher) library and [NN-template](https://github.com/lucmos/nn-template) is used for 
 structuring
 the project. The default settings are used for training on Omniglot (5-way
 5-shot) problem. It can be easily extended for other few-shot datasets thanks to
-![Torchmeta](https://github.com/tristandeleu/pytorch-meta) library.
+[Torchmeta](https://github.com/tristandeleu/pytorch-meta) library.
 
 ## Quickstart
 
@@ -131,4 +131,4 @@ pytorch-lightning as high-level library
 
 ## References
 
-- !(Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks)[https://arxiv.org/abs/1703.03400]
+- [Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks](https://arxiv.org/abs/1703.03400)
