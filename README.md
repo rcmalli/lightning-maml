@@ -48,9 +48,59 @@ python3 src/run.py train.pl_trainer.gpus=1
 
 ## Results
 
-TODO
-
 ### Omniglot (5-way 5-shot)
+
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-4erg{border-color:inherit;font-style:italic;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-6ic8{border-color:inherit;font-weight:bold;text-align:right;vertical-align:top}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky" colspan="2"></th>
+    <th class="tg-7btt" colspan="2">Metatrain</th>
+    <th class="tg-7btt" colspan="2">Metavalidation</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-7btt">Algorithm</td>
+    <td class="tg-7btt">inner_steps</td>
+    <td class="tg-6ic8">inner accuracy</td>
+    <td class="tg-6ic8"><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+    <td class="tg-4erg"><span style="font-style:normal;text-decoration:none">inner accuracy</span></td>
+    <td class="tg-fymr"><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">MAML</td>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-dvpl"></td>
+    <td class="tg-dvpl"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">MAML</td>
+    <td class="tg-c3ow">5</td>
+    <td class="tg-dvpl"></td>
+    <td class="tg-dvpl"></td>
+    <td class="tg-0pky"></td>
+    <td class="tg-0pky"></td>
+  </tr>
+</tbody>
+</table>
 
 ## Customization
 
