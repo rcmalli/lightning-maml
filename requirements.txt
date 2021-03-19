@@ -1,0 +1,6 @@
+pytorch-lightning
+hydra-core
+wandb
+dvc
+python-dotenv
+# hydra-joblib-launcher
