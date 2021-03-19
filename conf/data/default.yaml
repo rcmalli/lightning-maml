@@ -27,7 +27,6 @@ datamodule:
 
   nway: 5
   num_inner_steps: 1
-  num_meta_batches: 1000
 
   transforms:
     - _target_: torchvision.transforms.Resize

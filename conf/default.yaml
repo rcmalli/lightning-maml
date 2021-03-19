@@ -2,7 +2,7 @@
 core:
   version: 0.0.1
   tags:
-    - mytag
+    - maml
 
 defaults:
   - data: default
