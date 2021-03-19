@@ -4,7 +4,7 @@ lightning_module:
 
 
 torch_module:
-  _target_: common.models.OmniConv
+  _target_: common.models.omniconv.OmniConv
   num_layers : 4
   kernel_size: 3
   num_filters: 64

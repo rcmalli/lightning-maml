@@ -3,4 +3,5 @@ hydra-core
 wandb
 dvc
 python-dotenv
-# hydra-joblib-launcher
+higher
+torchmeta

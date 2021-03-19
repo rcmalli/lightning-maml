@@ -9,11 +9,28 @@
     <a href="https://black.readthedocs.io/en/stable/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 </p>
 
+This repository is the reimplementation of MAML(TODO) algorithm. The default 
+settings are used for training on Omniglot (5-way 5-shot) problem but It can be 
+easily extended for other few-shot datasets thanks to Torchmeta library.
 
+## Quickstart
 
-## Quickrun
+**On Local Machine**
 
 ```bash
-
+git clone https://github.com/rcmalli/lightning-maml.git
+cd ./lightning-maml/src && python3 run.py train.pl_trainer.gpus=1
 ```
 
+**On Google Colab**
+
+There is already prepared notebook on Google Colab to try it. TODO GOOGLE COLAB
+
+## Customization
+
+
+## Notes
+
+## References
+
+TODO
