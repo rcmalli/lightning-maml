@@ -1,30 +1,59 @@
 # @package _group_
 
+
+
 datamodule:
-  _target_: src.pl_data.datamodule.MyDataModule
+  _target_: pl.datamodule.MetaDataModule
+
 
   datasets:
     train:
-      _target_: src.pl_data.dataset.MyDataset
-      name: YourTrainDatasetName
-      path: ${env:YOUR_TRAIN_DATASET_PATH}
+      _target_: torchmeta.datasets.Omniglot
+      root: ${env:DATASET_PATH}
+      meta_train: True
+      download: True
 
     val:
-      - _target_: src.pl_data.dataset.MyDataset
-        name: YourValDatasetName
-        path: ${env:YOUR_VAL_DATASET_PATH}
+      _target_: torchmeta.datasets.Omniglot
+      root: ${env:DATASET_PATH}
+      meta_val: True
+      download: True
 
     test:
-      - _target_: src.pl_data.dataset.MyDataset
-        name: YourTestDatasetName
-        path: ${env:YOUR_TEST_DATASET_PATH}
+      _target_: torchmeta.datasets.Omniglot
+      root: ${env:DATASET_PATH}
+      meta_test: True
+      download: True
 
-  num_workers:
-    train: 8
-    val: 4
-    test: 4
+  nway: 5
+  num_inner_steps: 1
+  num_meta_batches: 1000
+
+  transforms:
+    - _target_: torchvision.transforms.Resize
+      size: 28
+    - _target_: torchvision.transforms.ToTensor
+
+  target_transform:
+    _target_: torchmeta.transforms.Categorical
+
+  class_augmentations:
+    - _target_: common.transform.Rotation
+      angle:
+        - 90
+        - 180
+        - 270
 
   batch_size:
-    train: 32
-    val: 16
-    test: 16
+    train: 20
+    val: 20
+    test: 20
+
+  kshot:
+    support: 5
+    query: 5
+
+  num_workers:
+    train: 2
+    val: 2
+    test: 2

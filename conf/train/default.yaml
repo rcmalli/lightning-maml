@@ -1,27 +1,26 @@
 # @package _group_
 
 # reproducibility
-deterministic: False
+deterministic: True
 random_seed: 42
 
 # training
 
 pl_trainer:
   fast_dev_run: False # Enable this for debug purposes
-  gpus: 1
+  gpus: 0
   precision: 32
-  max_steps: 10000
-  accumulate_grad_batches: 8
-  num_sanity_val_steps: 2
-  gradient_clip_val: 10.0
+  max_epochs: 1000
+  check_val_every_n_epoch: 10
+  log_every_n_steps: 1
+  num_sanity_val_steps: 1
+  automatic_optimization: False
+  track_grad_norm: 2
 
-monitor_metric: 'val_loss'
-monitor_metric_mode: 'min'
+monitor_metric: 'metaval/outer_accuracy'
+monitor_metric_mode: 'max'
 
-early_stopping:
-  patience: 42
-  verbose: False
 
 model_checkpoints:
-  save_top_k: 2
-  verbose: False
+  save_top_k: 3
+  verbose: True

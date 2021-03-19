@@ -2,16 +2,17 @@
 
 # log frequency
 val_check_interval: 1.0
-progress_bar_refresh_rate: 20
+progress_bar_refresh_rate: 1
 
 wandb:
-  project: nn-template
+  project: lightning-maml
   entity: null
+  group: null
 
   watch:
     log: 'all'
-    log_freq: 100
+    log_freq: 20
 
-lr_monitor:
-  logging_interval: "step"
-  log_momentum: False
+# lr_monitor:
+#   logging_interval: "step"
+#   log_momentum: False

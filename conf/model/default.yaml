@@ -1,3 +1,8 @@
 # @package _group_
-
-_target_: src.pl_modules.model.MyModel
+lightning_module:
+  _target_: pl.model.MAMLModel
+  torch_module:
+    _target_: common.model.ConvNet
+    num_layers : 4
+    kernel_size: 3
+    num_filters: 64

@@ -7,7 +7,7 @@ import hydra
 import omegaconf
 import pytorch_lightning as pl
 from hydra.core.hydra_config import HydraConfig
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from pytorch_lightning import seed_everything, Callback
 from pytorch_lightning.callbacks import (
     EarlyStopping,
@@ -16,9 +16,11 @@ from pytorch_lightning.callbacks import (
 )
 from pytorch_lightning.loggers import WandbLogger
 
-from src.common.utils import load_envs
+from common.utils import load_envs
+import pprint
 
-# Set the cwd to the project root
+from pl.utils import CustomProgressBar
+
 os.chdir(Path(__file__).parent.parent)
 
 # Load environment variables
@@ -59,6 +61,7 @@ def build_callbacks(cfg: DictConfig) -> List[Callback]:
             )
         )
 
+    callbacks.append(CustomProgressBar())
     return callbacks
 
 
@@ -68,12 +71,13 @@ def run(cfg: DictConfig) -> None:
 
     :param cfg: run configuration, defined by Hydra in /conf
     """
+
     if cfg.train.deterministic:
         seed_everything(cfg.train.random_seed)
 
     if cfg.train.pl_trainer.fast_dev_run:
         hydra.utils.log.info(
-            f"Debug mode <{cfg.train.pl_trainer.fast_dev_run=}>. "
+            f"Debug mode <{cfg.train.pl_trainer.fast_dev_run}>. "
             f"Forcing debugger friendly configuration!"
         )
         # Debuggers don't like GPUs nor multiprocessing
@@ -81,6 +85,8 @@ def run(cfg: DictConfig) -> None:
         cfg.data.datamodule.num_workers.train = 0
         cfg.data.datamodule.num_workers.val = 0
         cfg.data.datamodule.num_workers.test = 0
+        pp = pprint.PrettyPrinter(indent=2)
+        pp.pprint(OmegaConf.to_container(cfg))
 
     # Hydra run directory
     hydra_dir = Path(HydraConfig.get().run.dir)
@@ -92,15 +98,17 @@ def run(cfg: DictConfig) -> None:
     )
 
     # Instantiate model
-    hydra.utils.log.info(f"Instantiating <{cfg.model._target_}>")
-    model: pl.LightningModule = hydra.utils.instantiate(cfg.model, cfg=cfg)
+    hydra.utils.log.info(f"Instantiating <"
+                         f"{cfg.model.lightning_module._target_}>")
+    model: pl.LightningModule = hydra.utils.instantiate(
+        cfg.model.lightning_module, cfg=cfg)
 
     # Instantiate the callbacks
     callbacks: List[Callback] = build_callbacks(cfg=cfg)
 
     # Logger instantiation/configuration
     wandb_logger = None
-    if "wandb" in cfg.logging:
+    if "wandb" in cfg.logging and not cfg.train.pl_trainer.fast_dev_run:
         hydra.utils.log.info(f"Instantiating <WandbLogger>")
         wandb_config = cfg.logging.wandb
         wandb_logger = WandbLogger(
@@ -111,7 +119,8 @@ def run(cfg: DictConfig) -> None:
         )
         hydra.utils.log.info(f"W&B is now watching <{wandb_config.watch.log}>!")
         wandb_logger.watch(
-            model, log=wandb_config.watch.log, log_freq=wandb_config.watch.log_freq
+            model, log=wandb_config.watch.log,
+            log_freq=wandb_config.watch.log_freq
         )
 
     hydra.utils.log.info(f"Instantiating the Trainer")
@@ -133,7 +142,8 @@ def run(cfg: DictConfig) -> None:
     hydra.utils.log.info(f"Starting testing!")
     trainer.test(model=model, datamodule=datamodule)
 
-    shutil.copytree(".hydra", Path(wandb_logger.experiment.dir) / "hydra")
+    if "wandb" in cfg.logging and not cfg.train.pl_trainer.fast_dev_run:
+        shutil.copytree(".hydra", Path(wandb_logger.experiment.dir) / "hydra")
 
     # Logger closing to release resources/avoid multi-run conflicts
     if wandb_logger is not None:
