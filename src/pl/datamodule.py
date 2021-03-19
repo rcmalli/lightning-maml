@@ -39,7 +39,6 @@ class MetaDataModule(pl.LightningDataModule):
             target_transform: DictConfig,
             class_augmentations: DictConfig,
             batch_size: DictConfig,
-            num_meta_batches: DictConfig,
             num_inner_steps: DictConfig,
             cfg: DictConfig,
     ):
@@ -50,7 +49,6 @@ class MetaDataModule(pl.LightningDataModule):
         self.num_workers = num_workers
         self.batch_size = batch_size
         self.kshot = kshot
-        self.num_meta_batches = num_meta_batches
         self.nway = nway
         self.random_seed = cfg.train.random_seed
         self.transforms = transforms
