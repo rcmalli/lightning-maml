@@ -92,46 +92,7 @@ python3 src/run.py train.pl_trainer.gpus=1
 </tbody>
 </table>
 
-### MiniImageNet (5-way 5-shot)
 
-<table class="tg">
-<thead>
-  <tr>
-    <th  colspan="3"></th>
-    <th colspan="2">Metatrain</th>
-    <th colspan="2">Metavalidation</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td >Algorithm</td>
-    <td >Model</td>
-    <td >inner_steps</td>
-    <td >inner accuracy</td>
-    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
-    <td ><span style="font-style:normal;text-decoration:none">inner accuracy</span></td>
-    <td ><span style="font-style:normal;text-decoration:none">outer accuracy</span></td>
-  </tr>
-  <tr>
-    <td >MAML</td>
-    <td >MiniConv</td>
-    <td >1</td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-  </tr>
-  <tr>
-    <td >MAML</td>
-    <td >MiniConv</td>
-    <td >5</td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-  </tr>
-</tbody>
-</table>
 
 ## Customization
 
