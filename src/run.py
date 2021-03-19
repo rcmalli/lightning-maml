@@ -137,7 +137,7 @@ def run(cfg: DictConfig) -> None:
     )
 
     hydra.utils.log.info(f"Starting training!")
-    hydra.utils.log.info(f"It will run {cfg.data.datamodule.num_meta_batches} "
+    hydra.utils.log.info(f"It will run {cfg.train.pl_trainer.max_epochs} "
                          f"epochs for training!")
     trainer.fit(model=model, datamodule=datamodule)
 
