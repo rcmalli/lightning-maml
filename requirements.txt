@@ -1,3 +1,5 @@
+torch
+torchvision
 pytorch-lightning
 hydra-core
 wandb

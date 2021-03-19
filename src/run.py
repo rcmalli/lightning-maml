@@ -90,7 +90,7 @@ def run(cfg: DictConfig) -> None:
 
     # Hydra run directory
     hydra_dir = Path(HydraConfig.get().run.dir)
-
+    hydra.utils.log.info(f"Experiment directory {hydra_dir}")
     # Instantiate datamodule
     hydra.utils.log.info(f"Instantiating <{cfg.data.datamodule._target_}>")
     datamodule: pl.LightningDataModule = hydra.utils.instantiate(
@@ -137,6 +137,8 @@ def run(cfg: DictConfig) -> None:
     )
 
     hydra.utils.log.info(f"Starting training!")
+    hydra.utils.log.info(f"It will run {cfg.data.datamodule.num_meta_batches} "
+                         f"epochs for training!")
     trainer.fit(model=model, datamodule=datamodule)
 
     hydra.utils.log.info(f"Starting testing!")

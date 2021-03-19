@@ -2,7 +2,6 @@
 lightning_module:
   _target_: pl.model.MAMLModel
 
-
 torch_module:
   _target_: common.models.omniconv.OmniConv
   num_layers : 4
