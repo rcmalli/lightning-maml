@@ -21,10 +21,25 @@ the project. The default settings are used for training on Omniglot (5-way
 
 **On Local Machine**
 
+1. Download and install dependencies
 ```bash
 git clone https://github.com/rcmalli/lightning-maml.git
-pip install -r ./lightning-maml/requirements.txt
-cd ./lightning-maml/ && python3 src/run.py train.pl_trainer.gpus=1
+cd ./lightning-maml/
+pip install -r requirements.txt
+```
+
+2. Create `.env` file containing the info given below using your own [Wandb.
+   ai](https://wandb.ai) 
+   account to track experiments. You can use `.env.template` file.
+
+```bash
+export DATASET_PATH="/your/project/root/data/"
+export WANDB_ENTITY="USERNAME"
+export WANDB_API_KEY="KEY"
+```
+3. Run the experiment
+```bash
+python3 src/run.py train.pl_trainer.gpus=1
 ```
 
 **On Google Colab**
