@@ -1,7 +1,7 @@
 # @package _group_
 
 
-
+# The module is communicating with pytorch-lightning
 datamodule:
   _target_: pl.datamodule.MetaDataModule
 
@@ -25,33 +25,40 @@ datamodule:
       meta_test: True
       download: True
 
+  # number of classes for each task
   nway: 5
+  # number of inner steps for adaptation
   num_inner_steps: 1
 
+  # input transformations
   transforms:
     - _target_: torchvision.transforms.Resize
       size: 28
     - _target_: torchvision.transforms.ToTensor
 
+
   target_transform:
     _target_: torchmeta.transforms.Categorical
 
+  # this augmentation creates new classes based on rotation.
   class_augmentations:
     - _target_: common.transform.Rotation
       angle:
         - 90
         - 180
         - 270
-
+  # number of tasks for each metadataset split
   batch_size:
     train: 20
     val: 20
     test: 20
 
+  # number of samples per class for a task
   kshot:
     support: 5
     query: 5
 
+  # number of workers to load data to reduce bottleneck
   num_workers:
     train: 2
     val: 2
