@@ -137,7 +137,7 @@ class MAMLModel(BaseModel):
                 test_logit = fmodel(test_input)
                 outer_loss += F.cross_entropy(test_logit, test_target)
                 with torch.no_grad():
-                    test_preds = torch.softmax(train_logit, dim=-1)
+                    test_preds = torch.softmax(test_logit, dim=-1)
                     outer_accuracy.update(test_preds.cpu(), test_target.cpu())
 
         if train:
